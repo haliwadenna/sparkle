@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sparkle</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:#080808;
+  color:white;
+  font-family:Arial,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.box{
+  width:90%;
+  max-width:500px;
+  padding:35px;
+  background:#111;
+  border:1px solid #292929;
+  border-radius:22px;
+  box-shadow:0 0 40px #000;
+}
+h1{
+  text-align:center;
+  font-size:42px;
+  margin:0 0 10px;
+  letter-spacing:2px;
+}
+.sub{
+  text-align:center;
+  color:#888;
+  margin-bottom:30px;
+}
+input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #333;
+  background:#080808;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+button{
+  width:100%;
+  margin-top:12px;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:white;
+  color:black;
+  font-size:16px;
+  font-weight:bold;
+}
+button:active{transform:scale(.98)}
+.result{
+  display:none;
+  margin-top:25px;
+  padding:20px;
+  background:#0b0b0b;
+  border-radius:15px;
+  border:1px solid #292929;
+  line-height:1.7;
+}
+.label{color:#777}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>sparkle</h1>
+  <div class="sub">public username checker</div>
+  <input id="username" placeholder="@username">
+
+Проверить
+
+  <div class="result" id="result"></div>
+</div>
+<script>
+function checkUser(){
+  let username=document.getElementById("username").value.trim();
+  if(!username){
+    alert("Введите @username");
+    return;
+  }
+  username=username.replace("@","");
+  document.getElementById("result").style.display="block";
+  document.getElementById("result").innerHTML=
+  "<b>Результат</b><br><br>"+
+  "<span class='label'>Username:</span> @"+username+"<br>"+
+  "<span class='label'>Статус:</span> найден в демо-базе<br>"+
+  "<span class='label'>Тип:</span> публичный профиль<br>"+
+  "<span class='label'>Источник:</span> публичные данные";
+}
+</script>
+</body>
+</html>
