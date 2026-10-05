@@ -173,121 +173,76 @@ autocomplete="off">
 <span class="loader"></span>
 Проверяем профиль...
 </div>
-<div class="card" id="card">
+  <div class="card" id="card">
 
 <div class="profile">
-<div class="avatar">👤</div>
-
-<div>
-<div class="name" id="name">
-Публичный профиль
+  <div class="avatar">👤</div>
+  <div>
+    <div class="name" id="name">Публичный профиль</div>
+    <div class="username" id="user">@username</div>
+  </div>
 </div>
 
-<div class="username" id="user">
-@username
-</div>
-</div>
+<div class="section-title">👤 Профиль</div>
+
+<div class="row">
+  <span class="label">Username</span>
+  <span class="value" id="usernameResult">—</span>
 </div>
 
 <div class="row">
-<span class="label">Статус</span>
-<span class="value">
-<span class="badge">публичный</span>
-</span>
+  <span class="label">Имя</span>
+  <span class="value" id="firstName">—</span>
 </div>
 
 <div class="row">
-<span class="label">Username</span>
-<span class="value" id="usernameResult">—</span>
+  <span class="label">Фамилия</span>
+  <span class="value" id="lastName">—</span>
 </div>
 
 <div class="row">
-<span class="label">ID</span>
-<span class="value" id="userId">не определён</span>
+  <span class="label">Статус</span>
+  <span class="value"><span class="badge">публичный</span></span>
+</div>
+
+<div class="section-title">🎁 Подарки</div>
+
+<div class="row">
+  <span class="label">Публичные подарки</span>
+  <span class="value" id="gifts">не определено</span>
+</div>
+
+<div class="section-title">🔗 Публичные связи</div>
+
+<div class="row">
+  <span class="label">Публичные ссылки</span>
+  <span class="value" id="links">не найдены</span>
+</div>
+
+<div class="section-title">📝 История</div>
+
+<div class="row">
+  <span class="label">История имён</span>
+  <span class="value" id="namesHistory">нет данных</span>
+</div>
+
+<div class="section-title">ℹ️ Проверка</div>
+
+<div class="row">
+  <span class="label">Источник</span>
+  <span class="value">публичные данные</span>
 </div>
 
 <div class="row">
-<span class="label">Имя</span>
-<span class="value" id="firstName">не указано</span>
-</div>
-
-<div class="row">
-<span class="label">Фамилия</span>
-<span class="value" id="lastName">не указана</span>
-</div>
-
-<div class="row">
-<span class="label">Тип</span>
-<span class="value">Telegram-профиль</span>
-</div>
-
-<div class="row">
-<span class="label">Источник</span>
-<span class="value">публичные данные</span>
-</div>
-
-<div class="row">
-<span class="label">Проверка</span>
-<span class="value">
-<span class="badge">безопасная</span>
-</span>
+  <span class="label">Тип</span>
+  <span class="value">Telegram-профиль</span>
 </div>
 
 <div class="note">
-sparkle показывает только публичную или демонстрационную информацию.
+sparkle показывает только доступную публичную информацию.
 </div>
 
 </div>
-<div class="name" id="name">
-Публичный профиль
-</div>
-<div class="username" id="user">
-@username
-</div>
-</div>
-</div>
-<div class="row">
-<span class="label">Статус</span>
-<span class="value">
-<span class="badge">публичный</span>
-</span>
-</div>
-<div class="row">
-<span class="label">Username</span>
-<span class="value" id="usernameResult">—</span>
-</div>
-<div class="row">
-<span class="label">Тип</span>
-<span class="value">Telegram-профиль</span>
-</div>
-<div class="row">
-<span class="label">Проверка</span>
-<span class="value">только публичные данные</span>
-</div>
-<div class="note">
-sparkle показывает только безопасную публичную
-или демонстрационную информацию.
-</div>
-</div>
-</div>
-<script>
-function checkUser(){
-let input=document.getElementById("username");
-let username=input.value.trim();
-if(!username){
-alert("Введите @username");
-return;
-}
-username=username.replace(/^@/,"");
-document.getElementById("card").style.display="none";
-document.getElementById("status").style.display="block";
-setTimeout(function(){
-document.getElementById("status").style.display="none";
-document.getElementById("card").style.display="block";
-document.getElementById("user").textContent="@"+username;
-document.getElementById("usernameResult").textContent="@"+username;
-},1200);
-}
-</script>
+
 </body>
 </html>
