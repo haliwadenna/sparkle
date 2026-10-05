@@ -2,99 +2,224 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>sparkle</title>
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  min-height:100vh;
-  background:#080808;
-  color:white;
-  font-family:Arial,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+margin:0;
+min-height:100vh;
+background:
+radial-gradient(circle at top,#202020 0,#080808 45%,#050505 100%);
+color:#fff;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 }
-.box{
-  width:90%;
-  max-width:500px;
-  padding:35px;
-  background:#111;
-  border:1px solid #292929;
-  border-radius:22px;
-  box-shadow:0 0 40px #000;
+.container{
+width:100%;
+max-width:560px;
 }
-h1{
-  text-align:center;
-  font-size:42px;
-  margin:0 0 10px;
-  letter-spacing:2px;
+.logo{
+text-align:center;
+font-size:48px;
+font-weight:800;
+letter-spacing:4px;
+margin-bottom:8px;
 }
-.sub{
-  text-align:center;
-  color:#888;
-  margin-bottom:30px;
+.subtitle{
+text-align:center;
+color:#777;
+margin-bottom:30px;
+}
+.search{
+background:#111;
+border:1px solid #292929;
+border-radius:20px;
+padding:18px;
+box-shadow:0 15px 50px #000;
 }
 input{
-  width:100%;
-  padding:15px;
-  border-radius:12px;
-  border:1px solid #333;
-  background:#080808;
-  color:white;
-  font-size:16px;
-  outline:none;
+width:100%;
+padding:16px;
+border-radius:13px;
+border:1px solid #333;
+background:#080808;
+color:#fff;
+font-size:17px;
+outline:none;
 }
 button{
-  width:100%;
-  margin-top:12px;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  background:white;
-  color:black;
-  font-size:16px;
-  font-weight:bold;
+width:100%;
+margin-top:12px;
+padding:16px;
+border:0;
+border-radius:13px;
+background:#fff;
+color:#000;
+font-weight:700;
+font-size:16px;
+cursor:pointer;
 }
-button:active{transform:scale(.98)}
-.result{
-  display:none;
-  margin-top:25px;
-  padding:20px;
-  background:#0b0b0b;
-  border-radius:15px;
-  border:1px solid #292929;
-  line-height:1.7;
+button:active{
+transform:scale(.98);
 }
-.label{color:#777}
+.status{
+display:none;
+text-align:center;
+color:#888;
+margin:22px 0;
+}
+.loader{
+display:inline-block;
+width:18px;
+height:18px;
+border:2px solid #444;
+border-top-color:#fff;
+border-radius:50%;
+animation:spin .8s linear infinite;
+vertical-align:middle;
+margin-right:8px;
+}
+@keyframes spin{
+to{transform:rotate(360deg)}
+}
+.card{
+display:none;
+margin-top:22px;
+background:#101010;
+border:1px solid #292929;
+border-radius:20px;
+padding:22px;
+box-shadow:0 15px 50px #000;
+}
+.profile{
+display:flex;
+align-items:center;
+gap:15px;
+padding-bottom:20px;
+border-bottom:1px solid #252525;
+}
+.avatar{
+width:58px;
+height:58px;
+border-radius:50%;
+background:#222;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+}
+.name{
+font-size:20px;
+font-weight:700;
+}
+.username{
+color:#888;
+margin-top:4px;
+}
+.row{
+display:flex;
+justify-content:space-between;
+gap:20px;
+padding:13px 0;
+border-bottom:1px solid #1f1f1f;
+}
+.row:last-child{
+border-bottom:0;
+}
+.label{
+color:#777;
+}
+.value{
+text-align:right;
+}
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:8px;
+background:#1d1d1d;
+font-size:13px;
+}
+.note{
+margin-top:18px;
+font-size:12px;
+color:#666;
+text-align:center;
+line-height:1.5;
+}
 </style>
 </head>
 <body>
-<div class="box">
-  <h1>sparkle</h1>
-  <div class="sub">public username checker</div>
-  <input id="username" placeholder="@username">
-
+<div class="container">
+<div class="logo">sparkle</div>
+<div class="subtitle">
+public profile checker
+</div>
+<div class="search">
+<button onclick="checkUser()">
 Проверить
-
-  <div class="result" id="result"></div>
+</button>
+</div>
+<div class="status" id="status">
+<span class="loader"></span>
+Проверяем профиль...
+</div>
+<div class="card" id="card">
+<div class="profile">
+<div class="avatar">👤</div>
+<div>
+<div class="name" id="name">
+Публичный профиль
+</div>
+<div class="username" id="user">
+@username
+</div>
+</div>
+</div>
+<div class="row">
+<span class="label">Статус</span>
+<span class="value">
+<span class="badge">публичный</span>
+</span>
+</div>
+<div class="row">
+<span class="label">Username</span>
+<span class="value" id="usernameResult">—</span>
+</div>
+<div class="row">
+<span class="label">Тип</span>
+<span class="value">Telegram-профиль</span>
+</div>
+<div class="row">
+<span class="label">Проверка</span>
+<span class="value">только публичные данные</span>
+</div>
+<div class="note">
+sparkle показывает только безопасную публичную
+или демонстрационную информацию.
+</div>
+</div>
 </div>
 <script>
 function checkUser(){
-  let username=document.getElementById("username").value.trim();
-  if(!username){
-    alert("Введите @username");
-    return;
-  }
-  username=username.replace("@","");
-  document.getElementById("result").style.display="block";
-  document.getElementById("result").innerHTML=
-  "<b>Результат</b><br><br>"+
-  "<span class='label'>Username:</span> @"+username+"<br>"+
-  "<span class='label'>Статус:</span> найден в демо-базе<br>"+
-  "<span class='label'>Тип:</span> публичный профиль<br>"+
-  "<span class='label'>Источник:</span> публичные данные";
+let input=document.getElementById("username");
+let username=input.value.trim();
+if(!username){
+alert("Введите @username");
+return;
+}
+username=username.replace(/^@/,"");
+document.getElementById("card").style.display="none";
+document.getElementById("status").style.display="block";
+setTimeout(function(){
+document.getElementById("status").style.display="none";
+document.getElementById("card").style.display="block";
+document.getElementById("user").textContent="@"+username;
+document.getElementById("usernameResult").textContent="@"+username;
+},1200);
 }
 </script>
 </body>
